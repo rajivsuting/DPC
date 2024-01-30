@@ -4,7 +4,7 @@ const app = express();
 
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
-
+const path = require("path");
 require("dotenv/config");
 const connectDB = require("./db/connectDB");
 const eventRouter = require("./routes/eventRouter");
@@ -26,10 +26,20 @@ const blogRouter = require("./routes/blogRouter");
 const mentorRouter = require("./routes/mentorRouter");
 const studentRouter = require("./routes/studentRouter");
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 const fileUpload = require("express-fileupload");
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./client/build/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
 
 app.use(
   fileUpload({
