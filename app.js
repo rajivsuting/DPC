@@ -26,7 +26,7 @@ const blogRouter = require("./routes/blogRouter");
 const mentorRouter = require("./routes/mentorRouter");
 const studentRouter = require("./routes/studentRouter");
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 const fileUpload = require("express-fileupload");
 app.use(express.json());
