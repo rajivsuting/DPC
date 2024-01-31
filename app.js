@@ -65,8 +65,7 @@ app.use("/b-u/story", storyRouter);
 app.use("/b-u/mentor", mentorRouter);
 
 app.use(errorHandler);
-
+connectDB();
 app.listen(port, () => {
-  connectDB();
   console.log(`connection is Live at port no. ${port}`);
 });
