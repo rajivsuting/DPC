@@ -56,6 +56,7 @@ app.use("/api/blog", blogRouter);
 app.use("/api/student", studentRouter);
 app.use("/b-u/story", storyRouter);
 app.use("/b-u/mentor", mentorRouter);
+// condom
 
 app.use(errorHandler);
 // app.use(express.static(path.join(__dirname, "./client/build")));
