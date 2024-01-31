@@ -25,20 +25,21 @@ const storyRouter = require("./routes/storyRouter");
 const blogRouter = require("./routes/blogRouter");
 const mentorRouter = require("./routes/mentorRouter");
 const studentRouter = require("./routes/studentRouter");
+// const abc = require("./client/build/index.html")
 
 const port = process.env.PORT;
 
 const fileUpload = require("express-fileupload");
 app.use(express.json());
-
 app.use(
   fileUpload({
     useTempFiles: true,
   })
 );
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 app.use("/api/event", eventRouter);
 app.use("/api/post", postRouter);
 app.use("/api/course", courseRouter);
@@ -57,19 +58,19 @@ app.use("/b-u/story", storyRouter);
 app.use("/b-u/mentor", mentorRouter);
 
 app.use(errorHandler);
-app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", function (_, res) {
-  res.sendFile(
-    path.join(__dirname, "./client/build/index.html"),
-    function (err) {
-      res.status(500).send(err);
-    }
-  );
-});
-
-// app.get("/*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// app.use(express.static(path.join(__dirname, "./client/build")));
+// app.get("*", function (_, res) {
+//   res.sendFile(
+//     path.join(__dirname, "./client/build/index.html"),
+//     function (err) {
+//       res.status(500).send(err);
+//     }
+//   );
 // });
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 connectDB();
 app.listen(port, () => {
   console.log(`connection is Live at port no. ${port}`);
