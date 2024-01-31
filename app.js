@@ -25,7 +25,6 @@ const storyRouter = require("./routes/storyRouter");
 const blogRouter = require("./routes/blogRouter");
 const mentorRouter = require("./routes/mentorRouter");
 const studentRouter = require("./routes/studentRouter");
-// const abc = require("./client/build/index.html")
 
 const port = process.env.PORT;
 
@@ -53,13 +52,9 @@ app.use("/blog", blogRouter);
 app.use("/student", studentRouter);
 app.use("/b-u/story", storyRouter);
 app.use("/b-u/mentor", mentorRouter);
-// condom
 
 app.use(errorHandler);
 
-// app.get("*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
 connectDB();
 
 app.use(express.static(path.join(__dirname, "./client/build")));
