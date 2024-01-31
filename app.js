@@ -31,16 +31,6 @@ const port = process.env.PORT;
 const fileUpload = require("express-fileupload");
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", function (_, res) {
-  res.sendFile(
-    path.join(__dirname, "./client/build/index.html"),
-    function (err) {
-      res.status(500).send(err);
-    }
-  );
-});
-
 app.use(
   fileUpload({
     useTempFiles: true,
@@ -67,6 +57,15 @@ app.use("/b-u/story", storyRouter);
 app.use("/b-u/mentor", mentorRouter);
 
 app.use(errorHandler);
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./client/build/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
 
 // app.get("/*", function (req, res) {
 //   res.sendFile(path.join(__dirname, "./client/build/index.html"));
