@@ -22,7 +22,7 @@ function CreatePost() {
 
     try {
       // Replace 'YOUR_API_ENDPOINT' with your actual backend API endpoint
-      const response = await fetch("/api/post/create", {
+      const response = await fetch("/post/create", {
         method: "POST",
         body: formData,
       });
