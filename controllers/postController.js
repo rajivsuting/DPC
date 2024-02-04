@@ -8,27 +8,13 @@ const createPost = asyncHandler(async (req, res) => {
     const { caption } = req.body;
     const file = req.files.image;
 
-    cloudinary.uploader.upload(file.tempFilePath, async (error, result) => {
-      if (file.tempFilePath) {
-        fs.unlinkSync(file.tempFilePath);
-      }
-
-      if (error) {
-        res.status(400).json({
-          success: false,
-          message: "Error uploading image to Cloudinary",
-          error: error.message,
-        });
-      } else {
-        const newPost = new Post({
-          caption,
-          imageUrl: result.url,
-        });
-
-        const savedPost = await newPost.save();
-        res.status(201).json({ success: true, data: savedPost });
-      }
+    const newPost = new Post({
+      caption,
+      imageUrl: result.url,
     });
+
+    const savedPost = await newPost.save();
+    res.status(201).json({ success: true, data: savedPost });
   } catch (error) {
     res.status(400).json({
       success: false,

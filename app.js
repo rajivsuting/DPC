@@ -28,13 +28,13 @@ const studentRouter = require("./routes/studentRouter");
 
 const port = process.env.PORT;
 
-const fileUpload = require("express-fileupload");
+// const fileUpload = require("express-fileupload");
 app.use(express.json());
-app.use(
-  fileUpload({
-    useTempFiles: true,
-  })
-);
+// app.use(
+//   fileUpload({
+//     useTempFiles: true,
+//   })
+// );
 
 app.use("/event", eventRouter);
 app.use("/post", postRouter);
