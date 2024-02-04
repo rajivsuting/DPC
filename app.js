@@ -57,13 +57,13 @@ app.use(errorHandler);
 
 connectDB();
 
-app.use(express.static(path.join(__dirname, "./client/build")));
+// app.use(express.static(path.join(__dirname, "./client/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"), (err) => {
-    res.status(500).send(err);
-  });
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"), (err) => {
+//     res.status(500).send(err);
+//   });
+// });
 app.listen(port, () => {
   console.log(`connection is Live at port no. ${port}`);
 });
