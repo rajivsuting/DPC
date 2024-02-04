@@ -5,12 +5,11 @@ const fs = require("fs");
 
 const createPost = asyncHandler(async (req, res) => {
   try {
-    const { caption } = req.body;
-    const file = req.files.image;
+    const { caption, imageUrl } = req.body;
 
     const newPost = new Post({
       caption,
-      imageUrl: result.url,
+      imageUrl,
     });
 
     const savedPost = await newPost.save();
