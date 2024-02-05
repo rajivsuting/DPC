@@ -93,9 +93,7 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ message: "Invalid email or password2" });
     }
     if (user.status !== "Approved")
-      return res
-        .status(400)
-        .json({ message: "Your account haven't been appproved by the admin" });
+      return res.status(400).json({ message: "Approval pending" });
 
     const token = generateToken(email);
 

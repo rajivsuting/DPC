@@ -8,7 +8,7 @@ const {
   updateNotificationById,
 } = require("../controllers/notificationController");
 
-router.post("/create", validateToken, createNotification);
+router.post("/create", createNotification);
 router.get("/all", getAllNotifications);
 router.patch("/update/:id", validateToken, updateNotificationById);
 router.delete("/delete/:id", validateToken, deleteNotificationById);
