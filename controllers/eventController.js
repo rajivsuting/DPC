@@ -5,28 +5,7 @@ const fs = require("fs");
 
 const createEvent = asyncHandler(async (req, res) => {
   try {
-    const { title, description } = req.body;
-    let imageUrl = "";
-
-    if (req.files && req.files.image) {
-      const file = req.files.image;
-
-      const result = await new Promise((resolve, reject) => {
-        cloudinary.uploader.upload(file.tempFilePath, (error, result) => {
-          if (file.tempFilePath) {
-            fs.unlinkSync(file.tempFilePath);
-          }
-
-          if (error) {
-            reject(error);
-          } else {
-            resolve(result);
-          }
-        });
-      });
-
-      imageUrl = result.url;
-    }
+    const { title, description, imageUrl } = req.body;
 
     const newEvent = new eventData({
       title,
